@@ -1,12 +1,14 @@
 <template name="layout">
-{{ #if currentUser }}
-<div class="profil"><a href="{{ pathFor 'user' }}">Mon profil</a></div>
-<div class="logout"><a href="{{ pathFor 'trajets' }}">Deconnexion</a></div>
-{{ else }}
-<div class="login" ><a href="{{ pathFor 'login' }}">Se connecter</a></div>
-<div class="register" ><a href="{{ pathFor 'register' }}">S'enregistrer</a> </div>
-{{ /if }}
 
-{{> yield }}
+    {{ #if currentUser }}
+        <div class="accueil"><a href="{{pathFor 'trajets'}}">Accueil</a></div>
+        <div class="profil"><a href="{{ pathFor 'user' _id=currentUser._id }}">Mon profil</a></div>
+        <div class="logout"><a href="{{ pathFor 'trajets' }}">Deconnexion</a></div>
+    {{ else }}
+        <div class="login" ><a href="{{ pathFor 'login' }}">Se connecter</a></div>
+        <div class="register" ><a href="{{ pathFor 'register' }}">S'enregistrer</a> </div>
+    {{ /if }}
+
+    {{> yield }}
 
 </template>

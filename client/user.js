@@ -10,6 +10,11 @@ Template.user.helpers
 		{
 				return covoiturages.find().map( function(u) { return u; });
 				// retourne tous les trajets..., a modifier
-		}
+		},
+
+    mytrajets : function ()
+    {
+      return travels.map( function(t) { return t; });
+    }
 	}
 )

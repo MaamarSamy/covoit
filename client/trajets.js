@@ -13,9 +13,9 @@ Template.trajets.helpers
 					}
 			);
 		},
-    user_id : function()
+    user : function()
     {
-      return Meteor.userId();
+      return Meteor.user();
     }
 	}
 );
@@ -37,6 +37,6 @@ Template.trajets.events
 			{
 				covoiturages.insert( { depart: $depart.value, arrivee: $arrivee.value, places: $places.value, date : $date.value, user : $id.value} );
 			}
-		},
+		}
 	}
 );

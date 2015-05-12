@@ -1,3 +1,6 @@
+
+travels = new Mongo.Collection( "travels" );
+
 Template.trajet.helpers
 (
    {
@@ -14,6 +17,10 @@ Template.trajet.helpers
          return false;
        }
      },
+     lol : function()
+     {
+       return this.params._id;
+     },
      mail : function()
      {
        return Meteor.users.findOne({ _id : this.user }).emails[0].address;
@@ -21,3 +28,16 @@ Template.trajet.helpers
    }
 );
 
+//Events
+Template.trajet.events
+(
+  {
+    'click #get_covoit' : function ( event, template )
+    {
+      event.preventDefault();
+      {
+        travels.insert( { trajet_id: 'lol', user_id: 'dafuq' } );
+      }
+    }
+  }
+);

@@ -1,11 +1,13 @@
 <template name="trajet">
 
+    <div> {{ lol }} </div>
     <h1> Detail du trajet : </h1>
     <div> Départ de: {{ this.depart }} </div>
     <div> Arrivée à: {{ this.arrivee}} </div>
 		<div> Départ le : {{ this.date }} </div>
     <div> Nombre de palces disponibles : {{ this.places }} </div>
 
-    <div> <a href="{{ pathFor 'user' }}"> {{ user }} </a> </div>
-
+    <div id="form">
+        <button id="get_covoit">Je veux en être !</button>
+    </div>
 </template>
