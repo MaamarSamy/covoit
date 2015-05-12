@@ -1,0 +1,27 @@
+<template name="trajets">
+
+<h1>Covoiturages disponibles</h1>
+	<ul>
+    {{#each all_trajets}}
+		  <li><a href="{{ pathFor 'trajet' }}">De: {{ depart }}. A: {{ arrivee }}</a> </li>
+    {{/each}}
+	</ul>
+
+	<hr/>
+	<div>Ajouter un covoiturage :</div>
+	{{ #if currentUser }}
+	<div id="form">
+		
+		<input id="depart" type="text" placeholder="Ville de départ"/>
+		<input id="arrivee" type="text" placeholder="Ville d'arrivée"/>
+		<input id="date" type="text" placeholder="Date du départ"/>
+		<input id="places" type="int" placeholder="Nombre de places"/>
+		<input id="id" class="hidden" type="text" value="{{ user_id }}"/>
+
+		<button id="submit_trajet">Nouveau Trajet</button>
+	</div>
+	{{ else }}
+	<div> Connectez vous pour ajouter un trajet. <a href="{{  pathFor 'login' }}">Se connecter</a> </div>
+	{{ /if }}
+	{{ user_id }}
+</template>

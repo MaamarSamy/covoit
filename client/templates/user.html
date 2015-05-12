@@ -1,0 +1,10 @@
+<template name="user">
+
+    <h1> Trajets proposés par : {{ user_info.emails[0].address }}</h1>
+
+    <ul>
+    {{ #each user_traj }}
+      <li><a href="{{ pathFor 'trajet' }}">{{ name }} {{ firstname }}</a> De: {{ depart }}. A: {{ arrivee }}</li>
+    {{ /each }}
+    </ul>
+</template>
