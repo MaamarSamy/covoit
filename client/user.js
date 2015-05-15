@@ -45,7 +45,7 @@ Template.user.helpers
 		
     trajet_in : function ()
     {
-      return travels.find( { user_id : this._id }).map( function(t) { 
+      return travels.find({ user_id : this._id }).map( function(t) { 
 				return covoiturages.findOne({_id : t.trajet_id}); 
 			});
     }

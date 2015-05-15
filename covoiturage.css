@@ -4,3 +4,9 @@
 
 display: none;
 }
+
+.row.input-form,
+.row .margin {
+
+margin-top: 20px;
+}

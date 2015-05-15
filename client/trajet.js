@@ -33,6 +33,20 @@ Template.trajet.helpers
 		user : function()
 		{
 			return Meteor.users.findOne({ _id : this.user });
+		},
+		is_other_user : function()
+		{
+			if (travels.findOne({trajet_id : this._id}) != null) {
+				return true;
+			}else{
+				return false;
+			}
+		},
+		other_user : function()
+		{
+			return travels.find( { trajet_id : this._id }).map( function(u) { 
+				return Meteor.users.findOne({_id : u.user_id})
+			});
 		}
 	}
 );

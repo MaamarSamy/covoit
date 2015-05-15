@@ -1,26 +1,42 @@
 <template name="trajet">
+	<div class="row">
+		<div class="col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">
+			<input id="trajet_user_id" class="hidden" type="text" value="{{ trajet_user_id }}"/>
+			<h2> Covoiturage proposé par : <a href="{{ pathFor 'user' _id= user._id}}">{{ user.profile.nom }} {{user.profile.prenom}}</a></h2>
+			<h3> Detail du trajet : </h3>
+			<div> Départ de: {{ this.depart }} </div>
+			<div> Arrivée à: {{ this.arrivee}} </div>
+			<div> Départ le : {{ this.date }} </div>
+			<div> Nombre de palces disponibles : {{ this.places }}. <span class="text-info">( {{this.places_left}} places restantes)</span></div>
 
-		<input id="trajet_user_id" class="hidden" type="text" value="{{ trajet_user_id }}"/>
-		<h2> Covoiturage proposé par : <a href="{{ pathFor 'user' _id= user._id}}">{{ user.profile.nom }} {{user.profile.prenom}}</a></h2>
-    <h3> Detail du trajet : </h3>
-    <div> Départ de: {{ this.depart }} </div>
-    <div> Arrivée à: {{ this.arrivee}} </div>
-		<div> Départ le : {{ this.date }} </div>
-    <div> Nombre de palces disponibles : {{ this.places }}. ( {{this.places_left}} places restantes)</div>
-
-		
-		{{ #if already_in }}
-			<div>N'oublie pas d'y aller, c'est pour le {{this.date}}</div>
-		{{ else }}
-			{{ #if full }}
-				<div id="form">
-					<input id="user_id" class="hidden" type="text" value="{{ current_user_id }}"/>
-					<input id="trajet_id" class="hidden" type="text" value="{{ trajet_id }}"/>
-					<button id="get_covoit">Je veux en être !</button>
-				</div>
+			
+			{{ #if already_in }}
+				<div ><span class="text-success margin">N'oublie pas d'y aller, c'est pour le {{this.date}}</span></div>
 			{{ else }}
-				<div> Malheureusement ce covoiturage est complet :/</div>
+				{{ #if full }}
+					<div id="form">
+						<div class="row">
+							<div class="col-md-4 col-md-offset-4">
+								<input id="user_id" class="hidden" type="text" value="{{ current_user_id }}"/>
+								<input id="trajet_id" class="hidden" type="text" value="{{ trajet_id }}"/>
+								<br><button class="btn btn-success" id="get_covoit">Je veux en être !</button>
+							</div>
+						</div>
+					</div>
+				{{ else }}
+					<div><span class="text-warning margin"> Malheureusement ce covoiturage est complet :/</span></div>
+				{{ /if }}
 			{{ /if }}
-		{{ /if }}
 		
+			{{ #if is_other_user }}
+				<div> 
+					<h3> Participants : </h3>
+					{{ #each other_user }}
+						<div>-<a href="{{ pathFor 'user' _id=_id }}"> {{ profile.nom }} {{ profile.prenom }}</a></div>
+					{{ /each }}
+				</div>
+			{{ /if }}
+			
+		</div>
+	</div>
 </template>
