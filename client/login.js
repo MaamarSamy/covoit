@@ -7,10 +7,9 @@ Template.login.events({
 
         Meteor.loginWithPassword(email, password, function(err){
         if (err){
-					console.log('error login');
+					alert('Mail ou mot de passe incorect');
 				}
         else{
-					console.log('login bon');
 					Router.go('/');
 				}
       });

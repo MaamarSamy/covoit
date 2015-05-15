@@ -1,13 +1,26 @@
 <template name="trajet">
 
-    <div> {{ lol }} </div>
-    <h1> Detail du trajet : </h1>
+		<input id="trajet_user_id" class="hidden" type="text" value="{{ trajet_user_id }}"/>
+		<h2> Covoiturage proposé par : <a href="{{ pathFor 'user' _id= user._id}}">{{ user.profile.nom }} {{user.profile.prenom}}</a></h2>
+    <h3> Detail du trajet : </h3>
     <div> Départ de: {{ this.depart }} </div>
     <div> Arrivée à: {{ this.arrivee}} </div>
 		<div> Départ le : {{ this.date }} </div>
-    <div> Nombre de palces disponibles : {{ this.places }} </div>
+    <div> Nombre de palces disponibles : {{ this.places }}. ( {{this.places_left}} places restantes)</div>
 
-    <div id="form">
-        <button id="get_covoit">Je veux en être !</button>
-    </div>
+		
+		{{ #if already_in }}
+			<div>N'oublie pas d'y aller, c'est pour le {{this.date}}</div>
+		{{ else }}
+			{{ #if full }}
+				<div id="form">
+					<input id="user_id" class="hidden" type="text" value="{{ current_user_id }}"/>
+					<input id="trajet_id" class="hidden" type="text" value="{{ trajet_id }}"/>
+					<button id="get_covoit">Je veux en être !</button>
+				</div>
+			{{ else }}
+				<div> Malheureusement ce covoiturage est complet :/</div>
+			{{ /if }}
+		{{ /if }}
+		
 </template>

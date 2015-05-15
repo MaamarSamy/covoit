@@ -1,20 +1,53 @@
 Template.user.helpers
 (
 	{
-    user : function()
-    {
-       return Meteor.users.findOne({ _id : this.params._uid});
-    },
-
-		trajets : function ()
+		nom : function() 
 		{
-				return covoiturages.find().map( function(u) { return u; });
-				// retourne tous les trajets..., a modifier
+			return Meteor.users.findOne({ _id : this._id}).profile.nom;
 		},
-
-    mytrajets : function ()
+		
+		mail : function() 
+		{
+			return Meteor.users.findOne({ _id : this._id}).emails[0].address;
+		},
+		
+		tel : function() 
+		{
+			return Meteor.users.findOne({ _id : this._id}).profile.tel;
+		},
+		
+		prenom : function()
+		{
+			return Meteor.users.findOne({ _id : this._id }).profile.prenom;
+		},
+		
+		is_mytrajets : function() 
+		{
+			if ( covoiturages.findOne({ user : this._id}) != null) {
+				return true;
+			}else {
+				return false;
+			}
+		},
+		mytrajets : function ()
+		{
+				return covoiturages.find({ user : this._id}).map( function(u) { return u; });
+		},
+		
+		is_trajet_in : function() 
+		{
+			if ( travels.findOne({ user_id : this._id}) != null) {
+				return true;
+			}else {
+				return false;
+			}
+		},
+		
+    trajet_in : function ()
     {
-      return travels.map( function(t) { return t; });
+      return travels.find( { user_id : this._id }).map( function(t) { 
+				return covoiturages.findOne({_id : t.trajet_id}); 
+			});
     }
 	}
 )

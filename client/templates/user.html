@@ -1,9 +1,32 @@
 <template name="user">
 
-
-    <ul>
-    {{ #each trajets }}
-      <li><a href="{{ pathFor 'trajet' }}">De: {{ depart }}. A: {{ arrivee }}</a> </li>
-    {{ /each }}
-    </ul>
+	<h1> Profil de {{ nom }} {{ prenom }}  :</h1>
+	<br>
+	<div>Mail : {{ mail }} </div>
+	<br>
+	<div>Télephone : {{ tel }} </div>
+	<br>
+	<div>
+		{{ #if is_mytrajets }}
+			<h3> Covoiturage(s) proposés:</h3>
+			<ul>
+			{{ #each mytrajets }}
+				<li><a href="{{ pathFor 'trajet' }}">De: {{ depart }}. A: {{ arrivee }}</a> </li>
+			{{ /each }}
+				</ul>
+		{{ else }}
+			<div>{{ nom }} {{ prenom }} n'a proposé aucun covoiturage</div>
+		{{ /if }}
+	</div>
+	<br>
+	<div>
+		{{ #if is_trajet_in }}
+			<h3> Covoiturage(s) auxquel(s) il a participé :</h3>
+			{{ #each trajet_in }}
+				<li><a href="{{ pathFor 'trajet' }}">De: {{ depart }}. A: {{ arrivee }}</a> </li>
+			{{ /each }}
+		{{ else }}
+			<div> {{ nom }} {{ prenom }} n'a participé à aucun covoiturage </div>
+		{{ /if }}
+	</div>
 </template>

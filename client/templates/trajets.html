@@ -18,9 +18,9 @@
 		<input id="places" type="int" placeholder="Nombre de places"/>
 		<input id="id" class="hidden" type="text" value="{{ user_id }}"/>
 
-		<button id="submit_trajet">Nouveau Trajet</button>
+		<button id="submit_trajet">Nouveau Covoit</button>
 	</div>
 	{{ else }}
-	<div> Connectez vous pour ajouter un trajet. <a href="{{  pathFor 'login' }}">Se connecter</a> </div>
+	<div> Connectez vous pour ajouter un covoiturage. <a href="{{  pathFor 'login' }}">Se connecter</a> </div>
 	{{ /if }}
 </template>

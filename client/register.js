@@ -29,10 +29,7 @@ Template.register.events
           } else {
             // Success. Account has been created and the user
             // has logged in successfully. 
-						console.log('done');
-						
 						Router.go('/');
-						// The user has been logged in.
 						}
 				});
 			}

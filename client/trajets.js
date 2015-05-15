@@ -13,9 +13,9 @@ Template.trajets.helpers
 					}
 			);
 		},
-    user : function()
+    user_id : function()
     {
-      return Meteor.user();
+      return Meteor.userId();
     }
 	}
 );
@@ -30,12 +30,13 @@ Template.trajets.events
 			var $depart = template.find( "#depart" );
 			var $arrivee = template.find( "#arrivee" );
 			var $places = template.find( "#places" );
+			var $places_left = template.find( "#places" );
 			var $date = template.find( "#date" );
 			var $id = template.find( "#id" );
 
 			if ( $depart.value != "" && $arrivee.value != "" && $places.value > 0 && $date.value != "")
 			{
-				covoiturages.insert( { depart: $depart.value, arrivee: $arrivee.value, places: $places.value, date : $date.value, user : $id.value} );
+				covoiturages.insert( { depart: $depart.value, arrivee: $arrivee.value, places: $places.value, date : $date.value, user : $id.value, places_left : $places_left.value} );
 			}
 		}
 	}
